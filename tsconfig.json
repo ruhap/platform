@@ -21,7 +21,8 @@
       "@/pages/*": ["pages/*"],
       "@/server/*": ["server/*"],
       "@/utils/*": ["utils/*"],
-      "@/validation/*": ["validation/*"]
+      "@/validation/*": ["validation/*"],
+      "@/store/*": ["store/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
