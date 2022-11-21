@@ -9,11 +9,11 @@ export const postRouter = router({
   create: protectedProcedure
     .input(newPostSchema)
     .mutation(async ({ input, ctx }) => {
-      const { content } = input;
-      const userId = ctx.session.user.id;
-
       const post = await ctx.prisma.post.create({
-        data: { content, id: userId },
+        data: {
+          userId: ctx.session.user.id,
+          content: input.content,
+        },
       });
 
       return post;
