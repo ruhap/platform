@@ -1,8 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { FaSearch, FaSignInAlt } from "react-icons/fa";
+import { useState } from "react";
+import { BiGroup, BiNews, BiSearch } from "react-icons/bi";
 
 const Home: NextPage = () => {
+  const [isNewPost, setIsNewPost] = useState(false);
+
   return (
     <>
       <Head>
@@ -12,50 +15,57 @@ const Home: NextPage = () => {
       </Head>
       <div className="h-screen w-screen overflow-hidden bg-slate-200">
         <div className="bg-white">
-          <div className="sticky mx-auto flex max-w-7xl items-center gap-4 py-4">
+          <div className="sticky mx-auto flex max-w-7xl items-center gap-4 p-4">
             <div className="w-1/4">
-              <span className="text-xl font-bold">platform</span>
+              <span className="text-center text-xl font-bold">platform</span>
             </div>
             <form className="flex w-full items-center gap-2 rounded-full bg-slate-100 py-2 px-4">
-              <FaSearch />
+              <BiSearch />
               <input
                 className="w-full bg-slate-100 text-slate-400 focus:outline-none"
                 placeholder="Search"
               />
             </form>
-            <div className="flex w-1/4 justify-end gap-2">
+            <div className="flex w-1/4 items-center justify-end gap-2">
               <div className="flex rounded-full bg-slate-200 p-2">
-                <FaSignInAlt className="h-4 w-4" />
-              </div>
-              <div className="flex rounded-full bg-slate-200 p-2">
-                <FaSearch className="h-4 w-4" />
-              </div>
-              <div className="flex rounded-full bg-slate-200 p-2">
-                <FaSearch className="h-4 w-4" />
+                <BiGroup className="" />
               </div>
             </div>
           </div>
         </div>
-        <div className="sticky mx-auto flex h-full max-w-7xl gap-4">
-          <aside className="mt-4 h-screen w-1/4 space-y-4">
-            <div className="gap-2 space-y-4 rounded-xl bg-white p-4">
-              <div className="flex justify-between">
-                <h2 className="font-bold">Activity</h2>
-                <span>See All</span>
-              </div>
-              <h3 className="font-bold">Stories About You</h3>
+        <div className="sticky mx-auto flex h-full max-w-7xl gap-4 p-4">
+          <aside className="h-screen w-1/4 space-y-4">
+            <div className="rounded-xl bg-white p-4">
+              <p>Sidebar1 code</p>
             </div>
             <div className="rounded-xl bg-white p-4">
               <p>Sidebar1 code</p>
             </div>
           </aside>
-          <div className="no-scrollbar mt-4 w-full space-y-4 overflow-y-scroll">
-            <div className="rounded-xl bg-white p-4">
-              <p>Content code</p>
-              <p>Content code</p>
-              <p>Content code</p>
-              <p>Content code</p>
-              <p>Content code</p>
+          <div className="no-scrollbar w-full space-y-4 overflow-y-scroll">
+            <div className="flex flex-col gap-2 rounded-xl bg-white p-4">
+              <div className="flex gap-2">
+                <span
+                  onClick={() =>
+                    isNewPost ? setIsNewPost(false) : setIsNewPost(true)
+                  }
+                  className="rounded-full bg-slate-200 p-2"
+                >
+                  <BiNews />
+                </span>
+                <span className="rounded-full bg-slate-200 p-2">
+                  <BiNews />
+                </span>
+              </div>
+              {isNewPost && (
+                <form className="mt-2 flex w-full items-center gap-2 rounded-xl bg-slate-100 py-2 px-4">
+                  <textarea
+                    className="w-full resize-none bg-slate-100 text-slate-400 focus:outline-none"
+                    placeholder="New Post"
+                  />
+                  <button type="submit">Submit</button>
+                </form>
+              )}
             </div>
             <div className="rounded-xl bg-white p-4">
               <p>Content code</p>
@@ -125,7 +135,7 @@ const Home: NextPage = () => {
               <p>Content code</p>
             </div>
           </div>
-          <aside className="mt-4 h-screen w-1/4 space-y-4">
+          <aside className="h-screen w-1/4 space-y-4">
             <div className="rounded-xl bg-white p-4">
               <p>Sidebar2 code</p>
               <p>Sidebar2 code</p>
