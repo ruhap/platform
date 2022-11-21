@@ -22,7 +22,9 @@
       "@/server/*": ["server/*"],
       "@/utils/*": ["utils/*"],
       "@/validation/*": ["validation/*"],
-      "@/store/*": ["store/*"]
+      "@/store/*": ["store/*"],
+      "@/ui/*": ["ui/*"],
+      "@/features/*": ["features/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],

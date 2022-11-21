@@ -27,6 +27,16 @@ model User {
   emailVerified DateTime?
   password      String
   image         String?
+  posts         Post?     @relation(fields: [postId], references: [id])
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  postId        String?
+}
+
+model Post {
+  id        String   @id @default(cuid())
+  content   String
+  User      User[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
