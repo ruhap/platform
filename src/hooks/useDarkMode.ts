@@ -1,9 +1,13 @@
 import { useMemo, useState } from "react";
 
 const useDarkMode = () => {
-  const [theme, setTheme] = useState(
+  const [theme, setTheme] = useState<"dark" | "light">(
     typeof window !== "undefined" ? localStorage.theme : "dark"
   );
+
+  const handleThemeSwitch = (theme: "dark" | "light") => {
+    setTheme(theme);
+  };
 
   useMemo(() => {
     if (typeof window === "undefined") return;
@@ -15,7 +19,7 @@ const useDarkMode = () => {
     html.classList.add(theme === "dark" ? "light" : "dark");
   }, [theme]);
 
-  return { theme, setTheme };
+  return { theme, handleThemeSwitch };
 };
 
 export default useDarkMode;
