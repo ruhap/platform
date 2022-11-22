@@ -1,51 +1,60 @@
-import React from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useState } from "react";
+import Image from "next/image";
 
 import { trpc } from "@/utils/trpc";
-import type { IRegister } from "@/validation/validators";
+import type { IProfile } from "@/validation/validators";
 
-const RegisterForm = () => {
-  const router = useRouter();
-  const [errorMessage, setErrorMessage] = useState<string | undefined>();
-
-  const mutation = trpc.auth.register.useMutation({
-    onError: (e) => setErrorMessage(e.message),
-    onSuccess: () => router.push("/login"),
-  });
+const ProfileForm = () => {
+  // const mutation = trpc.auth.register.useMutation({
+  //   onError: (e) => console.log(e.message),
+  //   onSuccess: () => console.log("success"),
+  // });
 
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = useForm<IRegister>();
+  } = useForm<IProfile>();
 
-  const onSubmit: SubmitHandler<IRegister> = async (data) => {
-    setErrorMessage(undefined);
-    await mutation.mutateAsync(data);
+  const image = watch("image", undefined);
+  const onSubmit: SubmitHandler<IProfile> = async (data) => {
+    console.log(data);
+    // await mutation.mutateAsync(data);
   };
 
   return (
     <div className="rounded-xl bg-white p-4">
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-2">
-        {errorMessage && (
-          <p className="text-center text-red-600">{errorMessage}</p>
-        )}
         <label>Username</label>
         <input
           className="rounded border py-1 px-4"
           type="username"
-          {...register("username", { required: true })}
+          {...register("username")}
         />
         {errors.username && (
           <p className="text-center text-red-600">This field is required</p>
         )}
+
+        {/* <div className="relative h-20 w-20">
+          <Image
+            className=""
+            layout="fill"
+            alt={"https://randomuser.me/api/portraits/lego/1.jpg"}
+            src={"https://randomuser.me/api/portraits/lego/1.jpg"}
+          />
+          <div>
+            <label>Picture</label>
+            <input className="" type="file" {...register("image")} />
+          </div>
+        </div> */}
+
         <label>Email</label>
         <input
           className="rounded border py-1 px-4"
           type="text"
-          {...register("email", { required: true })}
+          {...register("email")}
         />
         {errors.email && (
           <p className="text-center text-red-600">This field is required</p>
@@ -54,7 +63,7 @@ const RegisterForm = () => {
         <input
           className="rounded border py-1 px-4"
           type="password"
-          {...register("password", { required: true })}
+          {...register("password")}
         />
         {errors.password && (
           <p className="text-center text-red-600">This field is required</p>
@@ -69,4 +78,4 @@ const RegisterForm = () => {
   );
 };
 
-export default RegisterForm;
+export default ProfileForm;

@@ -1,9 +1,18 @@
 import { router, publicProcedure, protectedProcedure } from "../trpc";
-import { newPostSchema } from "@/validation/auth";
+import { newPostSchema } from "@/validation/validators";
 
 export const postRouter = router({
   getFeed: publicProcedure.query(({ ctx }) => {
-    const feed = ctx.prisma.post.findMany({});
+    const feed = ctx.prisma.post.findMany({
+      orderBy: [
+        {
+          createdAt: "desc",
+        },
+        {
+          updatedAt: "desc",
+        },
+      ],
+    });
     return feed;
   }),
   create: protectedProcedure
@@ -16,6 +25,6 @@ export const postRouter = router({
         },
       });
 
-      return post;
+      return { ...post, creator: ctx.session.user.name };
     }),
 });

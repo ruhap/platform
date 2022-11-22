@@ -1,4 +1,4 @@
-import { registerSchema } from "@/validation/auth";
+import { registerSchema } from "@/validation/validators";
 import { TRPCError } from "@trpc/server";
 import bcrypt from "bcrypt";
 

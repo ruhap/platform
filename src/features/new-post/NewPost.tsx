@@ -5,7 +5,7 @@ import { BiNews } from "react-icons/bi";
 import { useForm, type SubmitHandler } from "react-hook-form";
 
 import { trpc } from "@/utils/trpc";
-import type { INewPost } from "@/validation/auth";
+import type { INewPost } from "@/validation/validators";
 
 const NewPost = () => {
   const [isNewPost, setIsNewPost] = useState(false);

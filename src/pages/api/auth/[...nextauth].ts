@@ -4,13 +4,14 @@ import bcrypt from "bcrypt";
 
 import { env } from "../../../env/server.mjs";
 import { prisma } from "../../../server/db/client";
-import { loginSchema } from "@/validation/auth";
+import { loginSchema } from "@/validation/validators";
 
 export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
       if (user) {
         token.id = user.id;
+        token.username = user.name;
         token.email = user.email;
       }
 
@@ -19,6 +20,7 @@ export const authOptions: NextAuthOptions = {
     session({ session, token }) {
       if (token && session.user) {
         session.user.id = token.id as string;
+        session.user.name = token.username as string;
       }
 
       return session;

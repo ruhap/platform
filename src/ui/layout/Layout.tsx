@@ -16,7 +16,7 @@ const Layout = ({ children }: Props) => {
       <div className="flex flex-1 gap-4 overflow-hidden p-4">
         <LeftSideBar />
         <div className="flex flex-1 flex-col">
-          <div className="flex flex-1 flex-col gap-4 overflow-y-auto">
+          <div className="no-scrollbar flex flex-1 flex-col gap-4 overflow-y-auto">
             {children}
           </div>
         </div>

@@ -13,6 +13,14 @@ export const newPostSchema = z.object({
   content: z.string().min(1),
 });
 
+export const profileSchema = z.object({
+  email: z.string().email().optional(),
+  password: z.string().min(4).optional(),
+  username: z.string().min(1).optional(),
+  image: z.string().optional(),
+});
+
 export type ILogin = z.infer<typeof loginSchema>;
 export type IRegister = z.infer<typeof registerSchema>;
 export type INewPost = z.infer<typeof newPostSchema>;
+export type IProfile = z.infer<typeof profileSchema>;

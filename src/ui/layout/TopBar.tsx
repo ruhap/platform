@@ -1,5 +1,6 @@
 import React from "react";
-import { BiGroup, BiSearch } from "react-icons/bi";
+import { BiSearch } from "react-icons/bi";
+import Image from "next/image";
 
 const TopBar = () => {
   return (
@@ -21,12 +22,14 @@ export const TopBarLogo = () => {
 
 export const TopBarRightMenu = () => {
   return (
-    <div className="flex w-2/12 justify-end ">
-      <div className="relative">
-        <button className="relative flex rounded-full bg-slate-200 p-2">
-          <BiGroup className="" />
-        </button>
-      </div>
+    <div className="flex w-2/12 justify-end">
+      <Image
+        className="rounded-full"
+        width={32}
+        height={32}
+        alt={"https://randomuser.me/api/portraits/lego/1.jpg"}
+        src={"https://randomuser.me/api/portraits/lego/1.jpg"}
+      />
     </div>
   );
 };
