@@ -1,6 +1,9 @@
 import React from "react";
 import { BiSearch } from "react-icons/bi";
+import { BsCloudMoonFill, BsCloudMoon } from "react-icons/bs";
 import Image from "next/image";
+
+import useDarkMode from "@/hooks/useDarkMode";
 
 const TopBar = () => {
   return (
@@ -21,8 +24,25 @@ export const TopBarLogo = () => {
 };
 
 export const TopBarRightMenu = () => {
+  const { theme, setTheme } = useDarkMode();
   return (
-    <div className="flex w-2/12 justify-end">
+    <div className="flex w-2/12 justify-end gap-2">
+      {theme === "dark" ? (
+        <button
+          onClick={() => setTheme("light")}
+          className="relative flex rounded-full bg-slate-200 p-2"
+        >
+          <BsCloudMoonFill className="" />
+        </button>
+      ) : (
+        <button
+          onClick={() => setTheme("dark")}
+          className="relative flex rounded-full bg-slate-200 p-2"
+        >
+          <BsCloudMoon className="" />
+        </button>
+      )}
+
       <Image
         className="rounded-full"
         width={32}

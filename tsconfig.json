@@ -24,7 +24,8 @@
       "@/validation/*": ["validation/*"],
       "@/store/*": ["store/*"],
       "@/ui/*": ["ui/*"],
-      "@/features/*": ["features/*"]
+      "@/features/*": ["features/*"],
+      "@/hooks/*": ["hooks/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.cjs", "**/*.mjs"],
