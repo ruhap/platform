@@ -1,12 +1,14 @@
 import { useMemo, useState } from "react";
 
 const useDarkMode = () => {
-  const [theme, setTheme] = useState(localStorage.theme || "dark");
+  const [theme, setTheme] = useState(
+    typeof window !== "undefined" ? localStorage.theme : "dark"
+  );
 
   useMemo(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("theme", theme);
-    }
+    if (typeof window === "undefined") return;
+    localStorage.setItem("theme", theme);
+
     const html = window.document.documentElement;
 
     if (theme === "dark") {
