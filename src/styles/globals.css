@@ -14,3 +14,9 @@
     scrollbar-width: none;  /* Firefox */
   }
 }
+/* 
+@layer base {
+  html {
+    @apply transition-colors duration-1000
+  }
+} */

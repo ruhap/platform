@@ -10,7 +10,7 @@ type Props = {
 
 const Layout = ({ children }: Props) => {
   return (
-    <div className="flex h-screen flex-col bg-slate-200">
+    <div className="flex h-screen flex-col bg-slate-200 dark:bg-neutral-900 ">
       <TopBar />
 
       <div className="flex flex-1 gap-4 overflow-hidden p-4">
