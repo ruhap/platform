@@ -12,6 +12,13 @@ export const postRouter = router({
           updatedAt: "desc",
         },
       ],
+      include: {
+        user: {
+          select: {
+            username: true,
+          },
+        },
+      },
     });
     return feed;
   }),
