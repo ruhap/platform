@@ -12,7 +12,6 @@ const DarkModeSwitcher: React.FC<DarkModeSwitcherProps> = ({
 }) => {
   return (
     <div>
-      {" "}
       {theme === "dark" ? (
         <button
           onClick={() => handleThemeSwitch("light")}

@@ -4,6 +4,9 @@ import Image from "next/image";
 
 import useDarkMode from "@/hooks/useDarkMode";
 import DarkModeSwitcher from "../DarkModeSwitcher";
+import useModal from "@/hooks/useModal";
+import Modal from "./Modal";
+import LoginForm from "@/features/auth/LoginForm";
 
 const TopBar = () => {
   return (
@@ -25,18 +28,32 @@ export const TopBarLogo = () => {
 
 export const TopBarRightMenu = () => {
   const { theme, handleThemeSwitch } = useDarkMode();
-  return (
-    <div className="flex w-2/12 justify-end gap-2">
-      <DarkModeSwitcher theme={theme} handleThemeSwitch={handleThemeSwitch} />
+  const { isOpen, closeModal, openModal } = useModal();
 
-      <Image
-        className="rounded-full"
-        width={32}
-        height={32}
-        alt={"https://randomuser.me/api/portraits/lego/1.jpg"}
-        src={"https://randomuser.me/api/portraits/lego/1.jpg"}
-      />
-    </div>
+  return (
+    <>
+      {isOpen && (
+        <Modal show={isOpen} onClose={closeModal}>
+          <LoginForm />
+        </Modal>
+      )}
+      <div className="flex w-2/12 justify-end gap-2">
+        <button
+          onClick={() => openModal()}
+          className="relative flex rounded-full bg-slate-200 p-2"
+        >
+          <BiSearch />
+        </button>
+        <DarkModeSwitcher theme={theme} handleThemeSwitch={handleThemeSwitch} />
+        <Image
+          className="rounded-full"
+          width={32}
+          height={32}
+          alt={"https://randomuser.me/api/portraits/lego/1.jpg"}
+          src={"https://randomuser.me/api/portraits/lego/1.jpg"}
+        />
+      </div>
+    </>
   );
 };
 export const Search = () => {
