@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import moment from "moment";
 
 import type { RouterOutputs } from "@/utils/trpc";
 
@@ -21,8 +22,10 @@ const Post = ({ post }: PostProps) => {
         <div>
           <div className="flex gap-2">
             <span className="font-bold">{post.user.username}</span>
-            <span className="">@{post.user.username}</span>
-            <span>-{post.updatedAt.toString()}</span>
+            {/* <span className="">@{post.user.username}</span> */}
+            <span className="font-light">
+              {moment(post.updatedAt).fromNow()}
+            </span>
           </div>
 
           {post.content}
