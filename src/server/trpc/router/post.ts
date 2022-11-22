@@ -25,6 +25,6 @@ export const postRouter = router({
         },
       });
 
-      return { ...post, creator: ctx.session.user.name };
+      return post;
     }),
 });

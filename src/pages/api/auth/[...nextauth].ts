@@ -9,18 +9,19 @@ import { loginSchema } from "@/validation/validators";
 export const authOptions: NextAuthOptions = {
   callbacks: {
     jwt: async ({ token, user }) => {
+      console.log(token, user);
       if (user) {
         token.id = user.id;
-        token.username = user.name;
         token.email = user.email;
       }
 
       return token;
     },
     session({ session, token }) {
+      console.log("s", session, token);
+
       if (token && session.user) {
         session.user.id = token.id as string;
-        session.user.name = token.username as string;
       }
 
       return session;
