@@ -3,7 +3,6 @@ import React from "react";
 
 const RightSideBar = () => {
   const { data: session } = useSession();
-  if (!session) return <div>No session</div>;
 
   return (
     <div className="hidden w-2/12 flex-col space-y-4 md:flex">
