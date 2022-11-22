@@ -1,6 +1,7 @@
 import React from "react";
 import { trpc } from "@/utils/trpc";
 import Post from "./Post";
+import Link from "next/link";
 
 const Feed = () => {
   const { data, isLoading, isError } = trpc.post.getFeed.useQuery();
@@ -12,7 +13,11 @@ const Feed = () => {
   return (
     <>
       {data.map((post) => {
-        return <Post key={post.id} post={post} />;
+        return (
+          <Link key={post.id} href={`/status/${post.id}`}>
+            <Post post={post} />
+          </Link>
+        );
       })}
     </>
   );
