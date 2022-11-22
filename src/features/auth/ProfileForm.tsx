@@ -20,7 +20,6 @@ const ProfileForm = () => {
 
   const image = watch("image", undefined);
   const onSubmit: SubmitHandler<IProfile> = async (data) => {
-    console.log(data);
     // await mutation.mutateAsync(data);
   };
 

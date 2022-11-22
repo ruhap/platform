@@ -12,7 +12,7 @@ const NewPost = () => {
   const { register, handleSubmit, reset } = useForm<INewPost>();
   const utils = trpc.useContext();
 
-  const mutation = trpc.post.create.useMutation({
+  const mutation = trpc.post.createPost.useMutation({
     onError: (e) => console.log(e.message),
     onSuccess: () => utils.post.getFeed.invalidate(),
   });

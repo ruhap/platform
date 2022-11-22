@@ -23,7 +23,7 @@ const Modal = ({ children, show, onClose }: ModalProps) => {
   if (!isBrowser) return null;
   if (!show) return null;
 
-  const content = (
+  const wrapper = (
     <div className="fixed top-0 right-0 bottom-0 left-0 z-50 flex overflow-auto bg-black/90">
       <div
         ref={modalRef}
@@ -37,7 +37,7 @@ const Modal = ({ children, show, onClose }: ModalProps) => {
     </div>
   );
   return ReactDOM.createPortal(
-    content,
+    wrapper,
     document.getElementById("modal") as HTMLElement
   );
 };
